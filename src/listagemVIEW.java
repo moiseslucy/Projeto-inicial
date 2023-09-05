@@ -200,7 +200,10 @@ public class listagemVIEW extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable listaProdutos;
     // End of variables declaration//GEN-END:variables
-
+/*Implementar a Funcionalidade de Listagem
+  Desenvolvimento da tela listagemVIEW para exibir
+    os itens cadastrados  
+    */
     private void listarProdutos(){
         try {
             ProdutosDAO produtosdao = new ProdutosDAO();

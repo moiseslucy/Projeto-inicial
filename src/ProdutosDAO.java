@@ -28,18 +28,19 @@ public class ProdutosDAO {
     public void cadastrarProduto (ProdutosDTO produto){
               
         //conn = new conectaDAO().connectDB();
-        conn = new conectaDAO().connectDB("uc11", "root", "MOLsll422."); // Substitua com seu nome de usuário e senha
+        conn = new conectaDAO().connectDB("uc11", "root", "MOLsll422."); 
         
         String sql = "INSERT INTO produtos (nome, valor, status) VALUES (?, ?, ?)";
         
         try {
             prep = conn.prepareStatement(sql);
             prep.setString(1, produto.getNome());
-            prep.setInt(2, produto.getValor());
+           
             prep.setString(3, produto.getStatus());
-            
+            prep.setDouble(2, produto.getValor());
             prep.executeUpdate();
-            
+            /*Exibição de uma mensagem indicando o sucesso ou falha no cadastro.
+            */
             JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso.");
             
         } catch (SQLException e) {
