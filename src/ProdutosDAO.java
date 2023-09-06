@@ -125,7 +125,7 @@ conn = new conectaDAO().connectDB("uc11", "root", "MOLsll422.");
 }
 public List<ProdutosDTO> listarProdutosVendidos() {
     List<ProdutosDTO> produtosVendidos = new ArrayList<>();
-
+ conn = new conectaDAO().connectDB("uc11", "root", "MOLsll422.");
     PreparedStatement stmt = null;
     ResultSet rs = null;
 

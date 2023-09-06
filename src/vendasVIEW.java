@@ -1,3 +1,7 @@
+
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -7,13 +11,16 @@
  *
  * @author mbmor
  */
-public class Vendas extends javax.swing.JFrame {
+public class vendasVIEW extends javax.swing.JFrame {
+private ProdutosDAO produtosdao;
 
     /**
      * Creates new form Vendas
      */
-    public Vendas() {
+    public vendasVIEW() {
         initComponents();
+      produtosdao = new ProdutosDAO();
+        preencherTabelaVendas();  
     }
 
     /**
@@ -28,10 +35,11 @@ public class Vendas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        Vendas = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
+        JVendas = new javax.swing.JTable();
+        JprodutosVendidos = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -48,22 +56,30 @@ public class Vendas extends javax.swing.JFrame {
 
         jButton1.setText("jButton1");
 
+        jLabel2.setText("STATUS");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Vendas.setModel(new javax.swing.table.DefaultTableModel(
+        JVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "VENDIDO"
+                "ID", "NOME", "VALOR", "STATUS"
             }
         ));
-        jScrollPane2.setViewportView(Vendas);
+        jScrollPane2.setViewportView(JVendas);
 
-        jLabel2.setText("STATUS");
+        JprodutosVendidos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JprodutosVendidos.setText("PRODUTOS VENDIDOS");
+        JprodutosVendidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JprodutosVendidosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -73,16 +89,16 @@ public class Vendas extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 35, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(JprodutosVendidos)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel2)
-                .addGap(43, 43, 43)
+                .addGap(23, 23, 23)
+                .addComponent(JprodutosVendidos)
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -107,6 +123,29 @@ public class Vendas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JprodutosVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JprodutosVendidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JprodutosVendidosActionPerformed
+
+    private void preencherTabelaVendas() {
+        List<ProdutosDTO> produtosVendidos = produtosdao.listarProdutosVendidos();
+
+        DefaultTableModel model = (DefaultTableModel) JVendas.getModel();
+        model.setRowCount(0);
+
+        for (ProdutosDTO produto : produtosVendidos) {
+            model.addRow(new Object[]{
+                produto.getId(),
+                produto.getNome(),
+                produto.getValor(),
+                produto.getStatus()
+            });
+        }
+    }
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -124,26 +163,28 @@ public class Vendas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Vendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vendasVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Vendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vendasVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Vendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vendasVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Vendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vendasVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Vendas().setVisible(true);
+                new vendasVIEW().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Vendas;
+    private javax.swing.JTable JVendas;
+    private javax.swing.JButton JprodutosVendidos;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
