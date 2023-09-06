@@ -8,7 +8,7 @@
  * @author Adm
  */
 
-import java.awt.List;
+
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-
+import java.util.List;
+import java.util.ArrayList;
 public class ProdutosDAO {
     
     Connection conn;
@@ -123,9 +123,9 @@ public class ProdutosDAO {
         }
     }
 }
-
 public List<ProdutosDTO> listarProdutosVendidos() {
     List<ProdutosDTO> produtosVendidos = new ArrayList<>();
+
     PreparedStatement stmt = null;
     ResultSet rs = null;
 
@@ -168,7 +168,7 @@ public List<ProdutosDTO> listarProdutosVendidos() {
 
     return produtosVendidos;
 }
-
+}
    
    
 
